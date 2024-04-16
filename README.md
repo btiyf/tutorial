@@ -24,5 +24,5 @@ macのターミナル上で以下のコマンドを実行
 - Visual Studio Code : `brew install visual-studio-code`
 - iTerm2 : `brew install iterm2`
 
-#### githubアカウントの作成
-
+#### github アカウントの作成
+(github公式サイト)[https://github.com/]にアクセスするとサインアップ画面が出るので、指示に従って情報を入力してアカウントを作成
