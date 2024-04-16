@@ -53,4 +53,9 @@ macのターミナル上で以下のコマンドを実行
    4. gitで`README.md`ファイルの変更をaddする: `git add README.md`
    5. gitで変更をコミットメッセージを追記してcommitする: `git commit -m "任意のコミットメッセージ"`
    6. push先の github レポジトリを追加する: `giit remote add oriigin https://github.com/自分のアカウント名/作成したレポジトリ名.git`
-   7. githubへpushする: `git push -u origin master`
+   7. githubへpushする: `git push -u origin master`*1
+
+## 疑問点
+- [ ] *1 sshキー設定を行なっていないのになぜ自分はgithubレポジトリにpushできたのか
+  - github desktopで認証が済んだか？
+  - VScode でgithub操作をするために認証をしたときに設定されたか？
