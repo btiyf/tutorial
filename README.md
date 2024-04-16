@@ -55,6 +55,27 @@ macのターミナル上で以下のコマンドを実行
    6. push先の github レポジトリを追加する: `giit remote add oriigin https://github.com/自分のアカウント名/作成したレポジトリ名.git`
    7. githubへpushする: `git push -u origin master`*1
 
+### git/github のssh接続設定
+[このサイト](https://qiita.com/shizuma/items/2b2f873a0034839e47ce)の通りにやってみる。
+
+1. sshの秘密鍵と公開鍵を作成する
+   1. `~/.ssh/` 配下で `ssh-keygen -t rsa`
+   2. 鍵の名前を任意に設定する: `Enter file in which to save the key (/Users/(username)/.ssh/id_rsa):任意の名前`
+2. 公開鍵をgithubに登録する
+   1. クリップボードに公開鍵をコピー: `pbcopy < 設定した鍵の名前.pub`
+   2. [githubのssh設定画面](https://github.com/settings/ssh)から公開鍵を登録
+3. sshの接続方法を設定する
+   1. `~/.ssh/config`を作成し以下を記述
+```
+Host github github.com
+  HostName github.com
+  IdentityFile ~/.ssh/設定した鍵の名前
+  User git
+```
+4. gitの接続方法の設定を変える
+   1. push先のgithubレポジトリをssh方式に変更する: `git remote set-url origin github:githubユーザ名/リポジトリ名.git`
+   2. 接続を確認
+
 ## 疑問点
 - [ ] *1 sshキー設定を行なっていないのになぜ自分はgithubレポジトリにpushできたのか
   - github desktopで認証が済んだか？
