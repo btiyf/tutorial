@@ -6,7 +6,7 @@ IT基礎研修用のチュートリアルプロジェクトの環境です。
 ### 必要なパッケージのインストール
 
 #### homebrew
-(公式サイト)[https://brew.sh/ja/]よりインストール：
+[公式サイト](https://brew.sh/ja/)よりインストール：
 macのターミナル上で以下のコマンドを実行
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -25,7 +25,7 @@ macのターミナル上で以下のコマンドを実行
 - iTerm2: `brew install iterm2`
 
 #### github アカウントの作成
-(github公式サイト)[https://github.com/]にアクセスするとサインアップ画面が出るので、指示に従って情報を入力してアカウントを作成
+[github公式サイト](https://github.com/)にアクセスするとサインアップ画面が出るので、指示に従って情報を入力してアカウントを作成
 
 ### git/github 初期設定
 目標：githubの個人のレポジトリでIT基礎研修の作業手順書を公開する。
