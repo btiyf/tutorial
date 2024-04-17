@@ -80,7 +80,10 @@ macのターミナル上で以下のコマンドを実行
    7. githubへpushする: `git push -u origin master`*1
 
 ### github のssh接続設定
-参考: [Qiita | GitHubでssh接続する手順~公開鍵・秘密鍵の生成から~](https://qiita.com/shizuma/items/2b2f873a0034839e47ce)
+参考:
+- [Qiita | GitHubでssh接続する手順~公開鍵・秘密鍵の生成から~](https://qiita.com/shizuma/items/2b2f873a0034839e47ce)
+- [【 ssh 】コマンド――リモートマシンにログインしてコマンドを実行する](https://atmarkit.itmedia.co.jp/ait/articles/1701/26/news015.html)
+- [【 ssh-keygen 】コマンド――SSHの公開鍵と秘密鍵を作成する](https://atmarkit.itmedia.co.jp/ait/articles/1908/02/news015.html)
 
 1. sshの秘密鍵と公開鍵を作成する
    1. `~/.ssh/` 配下で `ssh-keygen -t rsa`
