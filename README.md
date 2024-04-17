@@ -30,7 +30,7 @@ IT基礎研修用のチュートリアルプロジェクトの環境です。
 ### 必要なパッケージのインストール
 
 #### homebrew
-[公式サイト](https://brew.sh/ja/)よりインストール：
+[公式サイト](https://brew.sh/)よりインストール：
 macのターミナル上で以下のコマンドを実行
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -76,11 +76,11 @@ macのターミナル上で以下のコマンドを実行
    3. クローンしたディレクトリへコマンドを打ち込んで移動: `cd ディレクトリのパス`
    4. gitで`README.md`ファイルの変更をaddする: `git add README.md`
    5. gitで変更をコミットメッセージを追記してcommitする: `git commit -m "任意のコミットメッセージ"`
-   6. push先の github レポジトリを追加する: `giit remote add oriigin https://github.com/自分のアカウント名/作成したレポジトリ名.git`
+   6. push先の github レポジトリを追加する: `git remote add origin https://github.com/自分のアカウント名/作成したレポジトリ名.git`
    7. githubへpushする: `git push -u origin master`*1
 
 ### github のssh接続設定
-[このサイト](https://qiita.com/shizuma/items/2b2f873a0034839e47ce)の通りにやってみる。
+参考: [Qiita | GitHubでssh接続する手順~公開鍵・秘密鍵の生成から~](https://qiita.com/shizuma/items/2b2f873a0034839e47ce)
 
 1. sshの秘密鍵と公開鍵を作成する
    1. `~/.ssh/` 配下で `ssh-keygen -t rsa`
@@ -97,13 +97,12 @@ Host github github.com
   User git
 ```
 4. gitの接続方法の設定を変える
-   1. push先のgithubレポジトリをssh方式に変更する: `git remote set-url origin github:githubユーザ名/リポジトリ名.git`
+   1. push先のgithubレポジトリをssh方式に変更する: `git remote set-url origin github:GitHubのユーザ名/リポジトリ名.git`
    2. 接続を確認
 
 ## Linux操作とネットワーク
 ### リモートインスタンス環境へのsshアクセスの設定
 TODO
-
 
 ## 疑問点
 - [ ] *1 sshキー設定を行なっていないのになぜ自分はgithubレポジトリにpushできたのか
