@@ -73,6 +73,21 @@ IT基礎研修用のチュートリアルプロジェクトの環境です。
 - Docker と VMの違いを内部構造から含めて詳しく説明できるようになりたい。
 - DockerFileの記述方法などを詳しく知り、自分で作成できるようになりたい。
 
+### 2024/04/19
+
+#### やったこと
+
+#### 新しく学んだこと
+
+#### 課題・TODO
+メモ
+コミットメッセージのお作法として、最初の行は50文字以内。一行開けて３行目から詳しい記述を行う
+git amendはコミットメッセージの修正
+git resetのオプションは3つ `--soft`, `--hard`, `--mixed`
+`git log --oneline`, `git show コミットID`
+あるブランチの変更内容はコミット前に他のブランチに移動してしまうと、他のブランチに持ち越されてしまう。（ただし、変更が他のブランチとコンフリクトする場合は警告が出てブランチを変更できない）持ち込まれないようするためには`git stash`を使う。
+一回目のマージではコミットが求められなかったのに2つ目の変更ではコミットが求められたのはなぜ？：変更が入子にならなかったからか。
+
 ## 環境構築
 
 ### 必要なパッケージのインストール
@@ -128,11 +143,6 @@ macのターミナル上で以下のコマンドを実行
    7. githubへpushする: `git push -u origin master`*1
 
 ### github のssh接続設定
-参考:
-- [Qiita | GitHubでssh接続する手順~公開鍵・秘密鍵の生成から~](https://qiita.com/shizuma/items/2b2f873a0034839e47ce)
-- [@ITmedia | 【 ssh 】コマンド――リモートマシンにログインしてコマンドを実行する](https://atmarkit.itmedia.co.jp/ait/articles/1701/26/news015.html)
-- [@ITmedia | 【 ssh-keygen 】コマンド――SSHの公開鍵と秘密鍵を作成する](https://atmarkit.itmedia.co.jp/ait/articles/1908/02/news015.html)
-
 1. sshの秘密鍵と公開鍵を作成する
    1. `~/.ssh/` 配下でsshキーペアを作成:  `ssh-keygen -t rsa`
    2. 鍵の名前を任意に設定する: `Enter file in which to save the key (/Users/(username)/.ssh/id_rsa):任意の名前`
@@ -150,6 +160,11 @@ Host github github.com
 4. gitの接続方法の設定を変える
    1. push先のgithubレポジトリをssh方式に変更する: `git remote set-url origin github:GitHubのユーザ名/リポジトリ名.git`
    2. 接続を確認
+
+参考:
+- [Qiita | GitHubでssh接続する手順~公開鍵・秘密鍵の生成から~](https://qiita.com/shizuma/items/2b2f873a0034839e47ce)
+- [@ITmedia | 【 ssh 】コマンド――リモートマシンにログインしてコマンドを実行する](https://atmarkit.itmedia.co.jp/ait/articles/1701/26/news015.html)
+- [@ITmedia | 【 ssh-keygen 】コマンド――SSHの公開鍵と秘密鍵を作成する](https://atmarkit.itmedia.co.jp/ait/articles/1908/02/news015.html)
 
 ## Linux操作とネットワーク
 ### リモートインスタンス環境へのsshアクセスの設定
@@ -178,11 +193,6 @@ TODO
 - その他: `*` `?`(ワイルドカード), `|`(パイプ), `>`(リダイレクト)
 
 #### 権限設定
-参考:
-- [Qiita | Linuxの権限確認と変更(chmod)（超初心者向け）](https://qiita.com/shisama/items/5f4c4fa768642aad9e06)
-- [Qiita | 「sudo su」ってざっくり言ってなんぞ？ #Linux](https://qiita.com/msht0511/items/31294277a4415ccb4ac9)
-- [IT用語辞典 e-Words | 実行権限とは - 意味をわかりやすく](https://e-words.jp/w/%E5%AE%9F%E8%A1%8C%E6%A8%A9%E9%99%90.html)
-
 権限操作コマンド
 - `sudo`: 管理者権限でコマンドを実行
 - `su`: ユーザの変更
@@ -193,12 +203,17 @@ TODO
 Tips:
 - `chmod`の数字指定は3桁の2進数が由来: 100 -> 4, 020 -> 2, 001 -> 1
 
-#### ファイル圧縮・解凍
 参考:
-- [Qiita | [Linux]ファイルの圧縮、解凍方法](https://qiita.com/supersaiakujin/items/c6b54e9add21d375161f)
+- [Qiita | Linuxの権限確認と変更(chmod)（超初心者向け）](https://qiita.com/shisama/items/5f4c4fa768642aad9e06)
+- [Qiita | 「sudo su」ってざっくり言ってなんぞ？ #Linux](https://qiita.com/msht0511/items/31294277a4415ccb4ac9)
+- [IT用語辞典 e-Words | 実行権限とは - 意味をわかりやすく](https://e-words.jp/w/%E5%AE%9F%E8%A1%8C%E6%A8%A9%E9%99%90.html)
 
+#### ファイル圧縮・解凍
 Tips:
 - `tar`は権限は圧縮した時のまま、`zip`は解凍すると権限が変わってしまう。そのため環境を保持するためtarを推奨
+
+参考:
+- [Qiita | [Linux]ファイルの圧縮、解凍方法](https://qiita.com/supersaiakujin/items/c6b54e9add21d375161f)
 
 #### ファイル転送
 参考:
@@ -208,21 +223,6 @@ Tips:
 
 ### ネットワーク操作
 #### グローバルIPアドレスとローカルIPアドレス
-参考:
-- グローバル/ローカルIPアドレスとは
-  - [情シスマン | グローバルIPアドレスとプライベートIPアドレスの違いとは？【初心者向け・図解付】](https://www.gate02.ne.jp/media/it/column_98/)
-- サブネットマスクとは
-  - [JITERA | サブネットとは？IPアドレスの範囲やサブネットマスクの計算など基本の知識を徹底解説](https://jitera.com/ja/insights/20594)
-  - [CMAN |サブネットマスクとは？](https://www.cman.jp/network/term/subnet/p3/)
-- ローカルIPの確認方法
-  - ifconfig
-    - [Hatena Blog | ターミナルからプライベートIPアドレスとMACアドレス、ルーティングテーブルを確認する](https://bambinya.hateblo.jp/entry/2015/04/04/234428)
-    - [Qiita | macOSでifconfigコマンドを使用してネットワークインターフェースの情報を確認する](https://qiita.com/fastso/items/db46e03fbacac9b38793)
-  - arp
-    - [aNote | Macで同一ネットワーク（LAN）上にある機器のIPアドレスを調べる方法](https://anote.work/2244/)
-- グローバルIPの確認方法
-  - [Qiita | グローバルIPアドレスを最速で調査する方法](https://qiita.com/Brutus/items/3b9d169a4f50c8058816)
-
 グローバル/ローカルIPアドレスとは
 - グローバルIPアドレス: インターネット空間で一意に割り当てられる住所
 - ローカルIPアドレス: 一つのグローバルIPアドレスを持つ機器を用いて、複数デバイスがインターネット接続する時にグローバルIPアドレスを持つ機器がそれらの複数のデバイスを識別するためにその限定的なネットワーク上だけで一意に割り当てられる住所
@@ -238,14 +238,29 @@ Tips:
   - https://ipinfo.io/
       - コマンラインで`curl https://ipinfo.io/`でアクセスするとjson形式でインターネット接続情報を返してくれる
 
-#### pingコマンド
 参考:
-- [@ITmedia | Windowsの「ping」コマンドでネットワークトラブルの原因を調査する](https://atmarkit.itmedia.co.jp/ait/articles/0012/01/news002.html)
+- グローバル/ローカルIPアドレスとは
+  - [情シスマン | グローバルIPアドレスとプライベートIPアドレスの違いとは？【初心者向け・図解付】](https://www.gate02.ne.jp/media/it/column_98/)
+- サブネットマスクとは
+  - [JITERA | サブネットとは？IPアドレスの範囲やサブネットマスクの計算など基本の知識を徹底解説](https://jitera.com/ja/insights/20594)
+  - [CMAN |サブネットマスクとは？](https://www.cman.jp/network/term/subnet/p3/)
+- ローカルIPの確認方法
+  - ifconfig
+    - [Hatena Blog | ターミナルからプライベートIPアドレスとMACアドレス、ルーティングテーブルを確認する](https://bambinya.hateblo.jp/entry/2015/04/04/234428)
+    - [Qiita | macOSでifconfigコマンドを使用してネットワークインターフェースの情報を確認する](https://qiita.com/fastso/items/db46e03fbacac9b38793)
+  - arp
+    - [aNote | Macで同一ネットワーク（LAN）上にある機器のIPアドレスを調べる方法](https://anote.work/2244/)
+- グローバルIPの確認方法
+  - [Qiita | グローバルIPアドレスを最速で調査する方法](https://qiita.com/Brutus/items/3b9d169a4f50c8058816)
 
+#### pingコマンド
 `ping`コマンドによる通信確認方法
 - インスタンスとの疎通確認: `ping インスタンスのグローバルIP`
 - 他者のPCとの疎通確認: `ping 他者のローカルIP`
 - yahooサイトとの疎通確認: `ping yahoo.com`
+
+参考:
+- [@ITmedia | Windowsの「ping」コマンドでネットワークトラブルの原因を調査する](https://atmarkit.itmedia.co.jp/ait/articles/0012/01/news002.html)
 
 ## Docker
 ### Dockerについて
@@ -275,6 +290,13 @@ Tips:
   - コンテナのフォアグラウンドでプロセスが動いていない場合、コンテナは正常終了する
     - bashのプロセスは標準入力か出力が繋がってないと終了する。
   - docker run でコマンドを何も指定してなくても動くのは、イメージ単位でデフォルト指定がある。例えば[ubuntuイメージ](https://hub.docker.com/layers/library/ubuntu/latest/images/sha256-6f6ec53d36a9504f01e3636cf68e0e03761a3b6947a95ba430ae553ee3aaf4d9?context=explore)では`/bin/bash`
+
+参考:
+- [Qiita | Dockerコンテナの作成、起動〜停止まで](https://qiita.com/kooohei/items/0e788a2ce8c30f9dba53)
+- [minato | docker runのオプションいろいろ](https://scrapbox.io/llminatoll/docker_run%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%84%E3%82%8D%E3%81%84%E3%82%8D)
+- [- | dockerのrunコマンドのオプション一覧](https://minegishirei.hatenablog.com/entry/2023/05/09/095603#docker--v---volume)
+- [- | docker run -it で学ぶ tty とか標準入出力とかファイルディスクリプタとか](https://ohbarye.hatenablog.jp/entry/2019/05/05/learn-tty-with-docker)
+- [- | Linux コマンド格納場所一覧　と　環境変数（PATHを通すbash_profile）](https://mycodingjp.blogspot.com/2018/10/linuxpathbashprofile.html)
 
 #### Dockerのコンテナ・イメージ管理
 - Dockerのコンテナの状態表示
@@ -308,9 +330,28 @@ Tips:
   - [mount](https://matsuand.github.io/docs.docker.jp.onthefly/storage/bind-mounts/): ホストマシンの特定フォルダ・ファイルをコンテナにマウント(共有)する
   - [tmpfs](https://matsuand.github.io/docs.docker.jp.onthefly/storage/tmpfs/): ホストマシンのメモリの一時的なデータ保存場所のデータをコンテナにマウントする
 
+参考:
+- [Qiita | Dockerでホストとコンテナ間でのファイルコピー](https://qiita.com/gologo13/items/7e4e404af80377b48fd5)
+
 #### インスタンス上でのDocker操作
 Dockerがインスタンス上にすでにインストールされているため、基本的にインスタンスにssh接続すれば、上記と同様のDocker操作が可能
 ＊一つのインスタンスで複数のユーザがDocker操作を行うと、pullしたイメージ、作成したコンテナなどは共有される点は注意
+
+## Git/GitHub
+### Git/GitHbについて
+#### Gitとは
+Gitとは対象ディレクトリ内のファイル/フォルダの変更履歴・バージョン管理を行うソフトウェア。
+#### GitHubとは
+GitHubとは複数人で共有しているオンライン上のディレクトリにおいて、Gitによる変更履歴・バージョン管理を複数人で管理できるようにしたオンライン上のサービス。
+
+### Gitの基本操作
+#### 新規レポジトリ作成からコミットまで
+1. 新しく
+
+#### ブランチ作成とマージ・コンフリクト解消
+
+
+#### 
 
 ## 疑問点
 - [ ] *1 sshキー設定を行なっていないのになぜ自分はgithubレポジトリにpushできたのか
