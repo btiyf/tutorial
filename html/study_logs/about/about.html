@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x6210;&#x679c;&#x7269;&#x306b;&#x3064;&#x3044;&#x3066;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="成果物について">成果物について</h1>
+<p>今回の成果物についての説明です。</p>
+<h2 id="今回のゴールと成果物の概要">今回のゴールと成果物の概要</h2>
+<h3 id="今回の研修のゴール">今回の研修のゴール</h3>
+<pre><code>EC2上の任意インスタンス上にdocker上でwebサーバ（nginx）が稼働し、ブラウザからアクセスすると動きのあるページが閲覧できる
+- コンテナは決められたEC2インスタンスで稼働する
+- あらかじめ決めたれた条件（ポート等）を満たしている
+- 稼働した元となるコード（index.htmlやDockerファイル等）はGitHub上にアップロードされている
+- README.mdがあり、そこには構築が記載され、環境が再現可能
+</code></pre>
+<h3 id="自分が作成した成果物の概要">自分が作成した成果物の概要</h3>
+<p>Reactでbuildした静的なWebページを閲覧できる、
+NginxによるWebサーバーを構築できる環境をGithubで公開した。
+具体的には以下の3つを行なった。</p>
+<ul>
+<li>NginxによるWebサーバー機能を持つDockerイメージを提供する、Ubuntuイメージ元にしたDockerfileを作成</li>
+<li>Reactによる開発環境とBuildした静的なWebページを作成</li>
+<li>作成したWebサーバーの環境を再現できるように、Github上で手順書と共に公開</li>
+</ul>
+<h2 id="利用した技術の説明">利用した技術の説明</h2>
+<h3 id="docker">Docker</h3>
+<h4 id="dockerとは">Dockerとは</h4>
+<p>今回はWebサーバーの機能を持つDockerイメージを作成することでWebサーバーの環境を構築している。
+Dockerとはコンピュータ上に仮想的な独立したプログラム実行環境を作成するシステム。
+また、Dockerイメージとはその実行環境を作成する元となる設計書のようなものであり、
+DockerコンテナとはDockerイメージを元に作成された実行環境である。</p>
+<h4 id="今回利用しているdocker技術の説明">今回利用しているDocker技術の説明</h4>
+<ul>
+<li>Dockerfile
+<ul>
+<li>Ubuntuイメージにnginxを導入して、フォアグラウンドでnginxのプロセスを起動するイメージを作成する</li>
+</ul>
+</li>
+<li>Dockerのコマンドについて
+<ul>
+<li><code>docker build . -t tutorial</code>: 現在のディレクトリにあるDockerfileを元に<code>tutorial</code>という名前のイメージを作成する</li>
+<li><code>docker run -d -p 8080:80 tutorial</code>: <code>tutorial</code>という名前のイメージを元にしてコンテナを作成し、実行する
+<ul>
+<li><code>-d</code>: このオプションを渡すことでホストマシン側のバックグラウンドプロセスとして実行される</li>
+<li><code>-p 8080:80</code>: このオプションを渡すことでホストマシン側の8080番ポートと80番ポートを繋いでいる。
+今回は<code>tutorial</code>のDockerイメージのnginxが80番ポートでListenしているので80番ポートを指定している。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="nginx">Nginx</h3>
+<h4 id="nginxとは">Nginxとは</h4>
+<p>Webサーバーの機能を提供できるオープンソースのソフトウェア。</p>
+<h4 id="nginxの設定について">Nginxの設定について</h4>
+<ul>
+<li>Listenするデフォルトのポート番号は80番に設定されておりそのまま利用する。</li>
+<li>Webページコンテンツについて、デフォルトでは<code>/var/www/html</code>内が設定されているため、今回はここにコンテンツを配置する。</li>
+</ul>
+<h3 id="webページ表示とreact">Webページ表示とReact</h3>
+<h4 id="reactとは">Reactとは</h4>
+<p>Javascriptフレームワークの一つでコンポーネントベースのUI開発を行う言語である。</p>
+<h4 id="reactによるwebページの作成について">ReactによるWebページの作成について</h4>
+<ul>
+<li>dockerによる開発環境の構築
+<ul>
+<li>nodeイメージを用いて開発環境を構築した。</li>
+</ul>
+</li>
+<li>Reactプロジェクトの開始
+<ul>
+<li><code>docker-compose run --rm node sh -c 'npx create-react-app react-app --template typescript</code>
+<ul>
+<li><code>--rm</code>: コマンド実行後コンテナを削除する</li>
+<li><code>sh -c 'npx create-react-app react-app --template typescript</code>:
+コンテナのシェルで<code>npx</code>の<code>create-react-app</code>コマンドで<code>react-app</code>という<code>typescript</code>ベースのプロジェクトを作成する</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ReactプロジェクトのBuild
+<ul>
+<li><code>docker-compose run --rm node sh -c 'npm run build</code>:
+プロジェクトを静的なHTML/CSS, javascriptに変換する</li>
+</ul>
+</li>
+</ul>
+<h3 id="gitgithub">Git/GitHub</h3>
+<h4 id="gitgithubとは">Git/Githubとは</h4>
+<p>Gitとは対象ディレクトリ内のファイル/フォルダの変更履歴・バージョン管理を行うソフトウェア。</p>
+<p>GitHubとは複数人で共有しているオンライン上のディレクトリにおいて、Gitによる変更履歴・バージョン管理を複数人で管理できるようにしたオンライン上のサービス。</p>
+<h4 id="gitgithubの操作">Git/GitHubの操作</h4>
+<ul>
+<li>Gitによる変更履歴の追跡
+<ul>
+<li><code>git init</code>, <code>git add</code>, <code>git commit</code>による操作</li>
+</ul>
+</li>
+<li>Gitのブランチ操作
+<ul>
+<li><code>git branch</code>, <code>git checkout</code>による操作</li>
+<li>バージョンを管理するためのブランチの切り分けとマージによる開発</li>
+</ul>
+</li>
+<li>GitHubでの公開
+<ul>
+<li><code>git push</code>: GitHub上のレポジトリにローカルの変更を同期させる</li>
+<li><code>git clone</code>: アクセス権があるレポジトリを自分のローカルにダウンロードする</li>
+</ul>
+</li>
+</ul>
+<h2 id="工夫した点">工夫した点</h2>
+<h3 id="dockerfileの利用">Dockerfileの利用</h3>
+<ul>
+<li>Nginxの公式イメージを使わずに、DockerfileでUbuntuイメージをもとにNginxの環境を持つイメージを作成した</li>
+</ul>
+<h3 id="reactの利用">Reactの利用</h3>
+<ul>
+<li>Webページコンテンツを作成するためReactを用いて静的コンテンツを作成した。
+<ul>
+<li>Reactの開発環境をDockerで構築してローカルをクリーンに保った。</li>
+<li>Reactによって静的コンテンツをbuildした。</li>
+</ul>
+</li>
+</ul>
+<h3 id="gitgithubによるバージョン管理">Git/GitHubによるバージョン管理</h3>
+<ul>
+<li>Gitのブランチを用いて、バージョン管理を行なった。</li>
+</ul>
+<h3 id="ドキュメンテーションの徹底">ドキュメンテーションの徹底</h3>
+<ul>
+<li>勉強したこと、疑問に思ったこと、とにかく整理しながらめっちゃ書いた。</li>
+</ul>
+
+            
+            
+        </body>
+        </html>
