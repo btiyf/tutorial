@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Linux&#x64cd;&#x4f5c;&#x3068;&#x30cd;&#x30c3;&#x30c8;&#x30ef;&#x30fc;&#x30af;</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="linux操作とネットワーク">Linux操作とネットワーク</h1>
+<h2 id="リモートインスタンス環境へのsshアクセスの設定">リモートインスタンス環境へのsshアクセスの設定</h2>
+<h3 id="天下り的に">天下り的に</h3>
+<ol>
+<li>秘密鍵ファイルを<code>~/.ssh</code>配下に移動させ権限を設定。</li>
+<li>ユーザ名とインスタンスのIPアドレスを指定してssh通信:　<code>ssh -i 移動させた秘密鍵ファイルパス ユーザ名@インスタンスのIPアドレス</code>
+<ul>
+<li>初回はパスワードの設定を求められ、2回同じパスワードを入力し、パスワードが正常に設定されると、自動的にログアウトされる。</li>
+</ul>
+</li>
+</ol>
+<h3 id="自分のssh鍵での接続">自分のssh鍵での接続</h3>
+<ol>
+<li>ローカルの<code>~/.ssh</code>配下でsshキーペアを作成: <code>ssh-keygen</code></li>
+<li>鍵の名前を任意に設定する: <code>Enter file in which to save the key (/Users/(username)/.ssh/id_rsa):任意の名前</code></li>
+<li>作成された公開鍵ファイルをインスタンス側に送信する(<a href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E8%BB%A2%E9%80%81">ファイル転送</a>参照): <code>scp ~/.ssh/作成した鍵名.pub 送信先</code></li>
+<li>インスタンス側で転送された公開鍵ファイルの内容を<code>~/.ssh/authorized_keys</code>に追記する: <code>cat 転送した公開鍵ファイル.pub &gt;&gt; ~/.ssh/authorized_keys</code>
+<ul>
+<li>＊<code>&gt;&gt;</code>ではなく<code>&gt;</code>にすると上書きになってしまうので注意</li>
+</ul>
+</li>
+<li>ローカルからssh接続可能かを確認する: <code>ssh -i ~/.ssh/作成した秘密鍵ファイル ユーザ名@インスタンスのIPアドレス</code></li>
+</ol>
+<h3 id="sshの設定">sshの設定</h3>
+<p>TODO</p>
+<h2 id="コマンドライン操作">コマンドライン操作</h2>
+<h3 id="基本操作">基本操作</h3>
+<ul>
+<li>ファイル操作: <code>cd</code>, <code>ls</code>, <code>pwd</code>, <code>mkdir</code>, <code>rm</code>, <code>rmdir</code>, <code>touch</code>, <code>cp</code>, <code>mv</code></li>
+<li>ファイル編集・検索・内容確認: <code>vim</code>, <code>cat</code>, <code>less</code>, <code>grep</code>, <code>head</code>, <code>tail</code>, <code>diff</code>, <code>wc</code></li>
+<li>その他: <code>*</code> <code>?</code>(ワイルドカード), <code>|</code>(パイプ), <code>&gt;</code>(リダイレクト)</li>
+</ul>
+<h3 id="権限設定">権限設定</h3>
+<p>権限操作コマンド</p>
+<ul>
+<li><code>sudo</code>: 管理者権限でコマンドを実行</li>
+<li><code>su</code>: ユーザの変更</li>
+<li><code>ls -l</code>: フォルダ内のものについて権限などの状態も含めたリスト表示</li>
+<li><code>chmod</code>: 対象の権限を変更</li>
+<li><code>chown</code>: 対象の管理者を変更</li>
+</ul>
+<p>Tips:</p>
+<ul>
+<li><code>chmod</code>の数字指定は3桁の2進数が由来: 100 -&gt; 4, 020 -&gt; 2, 001 -&gt; 1</li>
+</ul>
+<p>参考:</p>
+<ul>
+<li><a href="https://qiita.com/shisama/items/5f4c4fa768642aad9e06">Qiita | Linuxの権限確認と変更(chmod)（超初心者向け）</a></li>
+<li><a href="https://qiita.com/msht0511/items/31294277a4415ccb4ac9">Qiita | 「sudo su」ってざっくり言ってなんぞ？ #Linux</a></li>
+<li><a href="https://e-words.jp/w/%E5%AE%9F%E8%A1%8C%E6%A8%A9%E9%99%90.html">IT用語辞典 e-Words | 実行権限とは - 意味をわかりやすく</a></li>
+</ul>
+<h3 id="ファイル圧縮解凍">ファイル圧縮・解凍</h3>
+<p>Tips:</p>
+<ul>
+<li><code>tar</code>は権限は圧縮した時のまま、<code>zip</code>は解凍すると権限が変わってしまう。そのため環境を保持するためtarを推奨</li>
+</ul>
+<p>参考:</p>
+<ul>
+<li><a href="https://qiita.com/supersaiakujin/items/c6b54e9add21d375161f">Qiita | [Linux]ファイルの圧縮、解凍方法</a></li>
+</ul>
+<h3 id="ファイル転送">ファイル転送</h3>
+<p>参考:</p>
+<ul>
+<li><a href="https://qiita.com/katsukii/items/225cd3de6d3d06a9abcb">Qiita | scpコマンドでサーバー上のファイルorディレクトリをローカルに落としてくる</a>
+<ul>
+<li>＊今回のワークでは<code>scp</code>コマンドの<code>-i</code>オプションで秘密鍵を指定する必要がある</li>
+<li>＊sshのconfig設定をしていれば<code>ホスト名:リモートのコピー先パス</code>で指定可能</li>
+</ul>
+</li>
+</ul>
+<h2 id="ネットワーク操作">ネットワーク操作</h2>
+<h3 id="グローバルipアドレスとローカルipアドレス">グローバルIPアドレスとローカルIPアドレス</h3>
+<p>グローバル/ローカルIPアドレスとは</p>
+<ul>
+<li>グローバルIPアドレス: インターネット空間で一意に割り当てられる住所</li>
+<li>ローカルIPアドレス: 一つのグローバルIPアドレスを持つ機器を用いて、複数デバイスがインターネット接続する時にグローバルIPアドレスを持つ機器がそれらの複数のデバイスを識別するためにその限定的なネットワーク上だけで一意に割り当てられる住所</li>
+</ul>
+<p>ローカルIPの確認方法</p>
+<ol>
+<li>ターミナル上で<code>ifconfig</code>と打つ</li>
+<li>出力される情報の内<code>en0</code>の<code>inet</code>以降に表示されているものがローカルIPアドレス
+<ul>
+<li>たくさん出力されるので<code>if config | grep &quot;en0&quot;</code>などで絞りこんでおくと良い</li>
+</ul>
+</li>
+</ol>
+<p>グローバルIPの確認方法</p>
+<ul>
+<li>以下に挙げるような確認できるWebサイトにアクセスする
+<ul>
+<li><a href="https://www.cman.jp/network/support/go_access.cgi">https://www.cman.jp/network/support/go_access.cgi</a></li>
+<li><a href="https://ipinfo.io/">https://ipinfo.io/</a>
+<ul>
+<li>コマンラインで<code>curl https://ipinfo.io/</code>でアクセスするとjson形式でインターネット接続情報を返してくれる</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>参考:</p>
+<ul>
+<li>グローバル/ローカルIPアドレスとは
+<ul>
+<li><a href="https://www.gate02.ne.jp/media/it/column_98/">情シスマン | グローバルIPアドレスとプライベートIPアドレスの違いとは？【初心者向け・図解付】</a></li>
+</ul>
+</li>
+<li>サブネットマスクとは
+<ul>
+<li><a href="https://jitera.com/ja/insights/20594">JITERA | サブネットとは？IPアドレスの範囲やサブネットマスクの計算など基本の知識を徹底解説</a></li>
+<li><a href="https://www.cman.jp/network/term/subnet/p3/">CMAN |サブネットマスクとは？</a></li>
+</ul>
+</li>
+<li>ローカルIPの確認方法
+<ul>
+<li>ifconfig
+<ul>
+<li><a href="https://bambinya.hateblo.jp/entry/2015/04/04/234428">Hatena Blog | ターミナルからプライベートIPアドレスとMACアドレス、ルーティングテーブルを確認する</a></li>
+<li><a href="https://qiita.com/fastso/items/db46e03fbacac9b38793">Qiita | macOSでifconfigコマンドを使用してネットワークインターフェースの情報を確認する</a></li>
+</ul>
+</li>
+<li>arp
+<ul>
+<li><a href="https://anote.work/2244/">aNote | Macで同一ネットワーク（LAN）上にある機器のIPアドレスを調べる方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>グローバルIPの確認方法
+<ul>
+<li><a href="https://qiita.com/Brutus/items/3b9d169a4f50c8058816">Qiita | グローバルIPアドレスを最速で調査する方法</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="pingコマンド">pingコマンド</h3>
+<p><code>ping</code>コマンドによる通信確認方法</p>
+<ul>
+<li>インスタンスとの疎通確認: <code>ping インスタンスのグローバルIP</code></li>
+<li>他者のPCとの疎通確認: <code>ping 他者のローカルIP</code></li>
+<li>yahooサイトとの疎通確認: <code>ping yahoo.com</code></li>
+</ul>
+<p>参考:</p>
+<ul>
+<li><a href="https://atmarkit.itmedia.co.jp/ait/articles/0012/01/news002.html">@ITmedia | Windowsの「ping」コマンドでネットワークトラブルの原因を調査する</a></li>
+</ul>
+
+            
+            
+        </body>
+        </html>

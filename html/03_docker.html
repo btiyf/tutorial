@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Docker</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="docker">Docker</h1>
+<h2 id="dockerについて">Dockerについて</h2>
+<h3 id="dockerとは">Dockerとは</h3>
+<p>コンピュータ上に仮想的な独立したプログラム実行環境を作成するシステム。
+また、Dockerイメージとはその実行環境を作成する元となる設計書のようなものであり、
+DockerコンテナとはDockerイメージを元に作成された実行環境である。</p>
+<h3 id="dockerのメリット">Dockerのメリット</h3>
+<ul>
+<li>プログラムの実行環境を共有することができる。</li>
+<li>実験的な実行環境を作成することができる。</li>
+</ul>
+<h2 id="dockerの基本操作">Dockerの基本操作</h2>
+<h3 id="dockerでコンテナの起動まで">Dockerでコンテナの起動まで</h3>
+<ol>
+<li>DockerHub上からubuntuのイメージをローカルにダンロードする: <code>docker pull ubuntu</code></li>
+<li>ubuntuのイメージからコンテナを作成し、ターミナルで<code>bash</code>の操作ができるようする: <code>docker run -it ubuntu bash</code>:</li>
+<li>コンテナ内での操作</li>
+</ol>
+<ul>
+<li><code>apt-get update &amp;&amp; apt-get install -y vim</code>: vimをインストール</li>
+<li><code>vim</code>, <code>ls</code>, <code>cd</code>など基本のコマンドが使えることを確認</li>
+</ul>
+<p>Tips:</p>
+<ul>
+<li><code>docker run [オプション] イメージ名 実行コマンド</code>
+<ul>
+<li>主要なオプション:
+<ul>
+<li><code>-i</code>オプション: ホスト側の標準入力をコンテナ側の標準入力と繋げる</li>
+<li><code>-t</code>オプション: tty(端末デバイス)を割り当て、コンテナ側の標準出力をホスト側の標準出力と繋げる</li>
+<li><code>-d</code>オプション: コンテナをバックグラウンドで実行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>プロセスとコンテナの挙動について
+<ul>
+<li>一つのコンテナに対して必ず一つ以上のプロセスを実行しないといけない</li>
+<li>コンテナのフォアグラウンドでプロセスが動いていない場合、コンテナは正常終了する
+<ul>
+<li>bashのプロセスは標準入力か出力が繋がってないと終了する。</li>
+</ul>
+</li>
+<li>docker run でコマンドを何も指定してなくても動くのは、イメージ単位でデフォルト指定がある。例えば<a href="https://hub.docker.com/layers/library/ubuntu/latest/images/sha256-6f6ec53d36a9504f01e3636cf68e0e03761a3b6947a95ba430ae553ee3aaf4d9?context=explore">ubuntuイメージ</a>では<code>/bin/bash</code></li>
+</ul>
+</li>
+</ul>
+<p>参考:</p>
+<ul>
+<li><a href="https://qiita.com/kooohei/items/0e788a2ce8c30f9dba53">Qiita | Dockerコンテナの作成、起動〜停止まで</a></li>
+<li><a href="https://scrapbox.io/llminatoll/docker_run%E3%81%AE%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%84%E3%82%8D%E3%81%84%E3%82%8D">minato | docker runのオプションいろいろ</a></li>
+<li><a href="https://minegishirei.hatenablog.com/entry/2023/05/09/095603#docker--v---volume">- | dockerのrunコマンドのオプション一覧</a></li>
+<li><a href="https://ohbarye.hatenablog.jp/entry/2019/05/05/learn-tty-with-docker">- | docker run -it で学ぶ tty とか標準入出力とかファイルディスクリプタとか</a></li>
+<li><a href="https://mycodingjp.blogspot.com/2018/10/linuxpathbashprofile.html">- | Linux コマンド格納場所一覧　と　環境変数（PATHを通すbash_profile）</a></li>
+</ul>
+<h3 id="dockerのコンテナイメージ管理">Dockerのコンテナ・イメージ管理</h3>
+<ul>
+<li>Dockerのコンテナの状態表示
+<ul>
+<li>起動中のコンテナを表示する: <code>docker ps</code></li>
+<li>停止中のコンテナも含めて全てのコンテナを表示する: <code>docker ps -a</code></li>
+<li>表示項目について
+<ul>
+<li><code>CONTAINER ID</code>: コンテナを識別するID。作成時に自動的に作成される。</li>
+<li><code>IMAGE</code>: コンテナのもとになっているイメージ</li>
+<li><code>COMMAND</code>: コンテナ作成時に行ったコマンド</li>
+<li><code>CREATED</code>: 作成日時</li>
+<li><code>STATUS</code>: 起動中<code>Up</code>か停止中<code>Exited</code>か</li>
+<li><code>PORTS</code>: ホストマシンとの通信のポート</li>
+<li><code>NAMES</code>: コンテナの名前</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>コンテナの停止・再開・削除
+<ul>
+<li>起動中のコンテナの停止: <code>docker stop</code></li>
+<li>停止中のコンテナの再開: <code>docker start</code></li>
+<li>停止中のコンテナの削除: <code>docker rm コンテナIDまたはコンテナ名</code></li>
+</ul>
+</li>
+<li>ローカルにpullされているDockerのイメージを表示する: <code>docker images</code></li>
+</ul>
+<h3 id="ホストマシンとコンテナ間のファイル操作">ホストマシンとコンテナ間のファイル操作</h3>
+<p>＊前提として操作対象のコンテナは起動しているものとする</p>
+<ul>
+<li><code>docker cp</code>を使ってコンテナとホストマシン間でファイルをコピーする
+<ul>
+<li>コンテナのファイルをホスト側にコピー: <code>docker cp コンテナID:コンテナ内パス ホスト内パス</code></li>
+<li>ホスト側のファイルをコンテナ側にコピー: <code>docker cp ホスト内パス コンテナID:コンテナ内パス</code></li>
+</ul>
+</li>
+<li><code>-v</code>オプションを使ってホスト側のフォルダとコンテナ側のフォルダをマウントする。
+<ul>
+<li><code>docker run -v ホスト内パス:コンテナ内パス</code></li>
+</ul>
+</li>
+</ul>
+<p>Tips:</p>
+<ul>
+<li>Dockerのデータ管理方法
+<ul>
+<li><a href="https://matsuand.github.io/docs.docker.jp.onthefly/storage/volumes/">volume</a>: Dockerが管理するコンテナに依存しない永続データ保存場所のデータをコンテナにマウント(共有)する</li>
+<li><a href="https://matsuand.github.io/docs.docker.jp.onthefly/storage/bind-mounts/">mount</a>: ホストマシンの特定フォルダ・ファイルをコンテナにマウント(共有)する</li>
+<li><a href="https://matsuand.github.io/docs.docker.jp.onthefly/storage/tmpfs/">tmpfs</a>: ホストマシンのメモリの一時的なデータ保存場所のデータをコンテナにマウントする</li>
+</ul>
+</li>
+</ul>
+<p>参考:</p>
+<ul>
+<li><a href="https://qiita.com/gologo13/items/7e4e404af80377b48fd5">Qiita | Dockerでホストとコンテナ間でのファイルコピー</a></li>
+</ul>
+<h3 id="インスタンス上でのdocker操作">インスタンス上でのDocker操作</h3>
+<p>Dockerがインスタンス上にすでにインストールされているため、基本的にインスタンスにssh接続すれば、上記と同様のDocker操作が可能</p>
+<p>＊ 一つのインスタンスで複数のユーザがDocker操作を行うと、pullしたイメージ、作成したコンテナなどは共有される点は注意</p>
+
+            
+            
+        </body>
+        </html>

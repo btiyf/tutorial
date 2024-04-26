@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Git&sol;GitHub</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="gitgithub">Git/GitHub</h1>
+<h2 id="gitgithbについて">Git/GitHbについて</h2>
+<h3 id="gitとは">Gitとは</h3>
+<p>Gitとは対象ディレクトリ内のファイル/フォルダの変更履歴・バージョン管理を行うソフトウェア。</p>
+<h3 id="githubとは">GitHubとは</h3>
+<p>GitHubとは複数人で共有しているオンライン上のディレクトリにおいて、Gitによる変更履歴・バージョン管理を複数人で管理できるようにしたオンライン上のサービス。</p>
+<h2 id="gitの基本操作">Gitの基本操作</h2>
+<h3 id="新規レポジトリ作成からコミットまで">新規レポジトリ作成からコミットまで</h3>
+<ol>
+<li>新規のレポジトリを作る: 新しくgitのプロジェクトを開始したいディレクトリ内で<code>git init</code></li>
+<li>変更を加えてコミットする: <code>git add 対象ファイル</code> -&gt; <code>git commit -m &quot;コミットメッセージ&quot;</code></li>
+<li>コミットされたことを確認する: <code>git log</code></li>
+<li>コミットを取り消したりする: <code>git reset --soft ^HEAD</code></li>
+</ol>
+<p>Tips:</p>
+<ul>
+<li>コミットメッセージのお作法として、最初の行は50文字以内。一行開けて３行目から詳しい記述を行う。</li>
+<li>直前のコミットメッセージの修正: <code>git commit --amend</code></li>
+<li>git resetのオプションは3つ
+<ul>
+<li><code>--soft</code>: コミットをStagedに戻す</li>
+<li><code>--hard</code>: コミットもその変更も全て無かったことにする</li>
+<li><code>--mixed</code>: コミットをChangedに戻す</li>
+</ul>
+</li>
+<li>gitの履歴を見るときの便利コマンド
+<ul>
+<li><code>git log --oneline</code>: logが１行の要約で全て表示される。見やすい。</li>
+<li><code>git show コミットID</code>: コミット内容まで詳しくみる。</li>
+</ul>
+</li>
+</ul>
+<p>参考:</p>
+<ul>
+<li><a href="https://tech-blog.rakus.co.jp/entry/20191113/git">Hatena Blog | コミットの修正には git commit --amend が便利</a></li>
+<li><a href="https://qiita.com/shuntaro_tamura/items/db1aef9cf9d78db50ffe">Qiita | [git reset (--hard/--soft)]ワーキングツリー、インデックス、HEADを使いこなす方法</a></li>
+</ul>
+<h3 id="ブランチ作成とマージ">ブランチ作成とマージ</h3>
+<ol>
+<li>新規ブランチを作成してそのブランチに移動: <code>git checkout -b 新規ブランチ名</code></li>
+<li>現在のブランチを確認: <code>git branch</code></li>
+<li>変更を加えてコミットする: <code>git add 変更したファイル</code>, <code>git commit -m &quot;コミットメッセージ&quot;</code></li>
+<li>変更をmainブランチにマージする
+<ol>
+<li>mainブランチに移動する: <code>git checkout main</code></li>
+<li>変更をmainブランチにマージする: <code>git merge ブランチ名</code></li>
+</ol>
+</li>
+</ol>
+<h3 id="変更の退避">変更の退避</h3>
+<p>あるブランチの変更内容はコミット前に他のブランチに移動してしまうと、他のブランチに持ち越されてしまう。ただし、変更が他のブランチとコンフリクトする場合は警告が出てブランチを変更できない。
+持ち込まれないようするためには<code>git stash</code>を使う。</p>
+<ol>
+<li>変更内容の持ち込み: 変更をコミット前にブランチを移動する</li>
+</ol>
+<pre><code class="language-bash:ターミナル">$ git branch # mainブランチにいることを確認
+$ touch test.txt
+$ git add test.txt &amp;&amp; git commit -m &quot;test.txtを追加&quot;
+$ git checkout -b test1
+$ echo &quot;hello from test1 branch&quot; &gt; test.txt
+$ git status # test.txtの変更を確認
+$ git checkout main
+$ git status # test.txtの変更が持ち越されてしまっている。
+</code></pre>
+<ol start="2">
+<li>ブランチ変更不可: 別のブランチでコミット済みのファイルで現在のブランチで反映されていないファイルを新たに作成して、コミット前にブランチを移動する</li>
+</ol>
+<pre><code class="language-bash:ターミナル">$ git branch # mainブランチにいることを確認
+$ git branch test2 #ファイルを作成する前にブランチを作成する
+$ touch test.txt
+$ git add test.txt &amp;&amp; git commit -m &quot;test.txtを追加&quot;
+$ git checkout test2
+$ echo &quot;hello from test2 branch&quot; &gt; test.txt # git mergeでは自動解消可能なconflictだが、ブランチ変更ではgit mergeほど賢くない
+$ git status # test.txtの変更を確認
+$ git checkout main # エラーで変更できない
+</code></pre>
+<ol start="3">
+<li><code>git stash</code>を使って1,2の問題を解決する
+<ol>
+<li>それぞれ<code>git checkout main</code>の前に変更を退避させる: <code>git stash -u</code></li>
+<li>元のブランチに戻ってきた時、退避させた作業をもとに戻す: <code>git stash pop stash@{0}</code></li>
+</ol>
+</li>
+</ol>
+<p>参考:</p>
+<ul>
+<li><a href="https://qiita.com/chihiro/items/f373873d5c2dfbd03250">Qiita | 【git stash】コミットはせずに変更を退避したいとき</a></li>
+</ul>
+<h3 id="コンフリクトの解消">コンフリクトの解消</h3>
+<ol>
+<li>mainブランチで<code>test.txt</code>を編集しコミットする。</li>
+</ol>
+<pre><code class="language-bash:ターミナル">$ git branch # mainブランチにいることを確認
+$ echo &quot;Hello from main branch&quot; &gt; test.txt
+$ git add test.txt &amp;&amp; git commit -m &quot;test.txtをmainブランチで編集&quot;
+</code></pre>
+<ol start="2">
+<li>別のブランチで<code>test.txt</code>を編集しコミットする。</li>
+</ol>
+<pre><code class="language-bash:ターミナル">$ git branch # 別のブランチにいることを確認
+$ echo &quot;Hello from the other branch&quot; &gt; test.txt
+$ git add test.txt &amp;&amp; git commit -m &quot;test.txtを別のブランチで編集&quot;
+</code></pre>
+<ol start="4">
+<li>変更をmainブランチにコミットする
+<ol>
+<li>mainブランチに移動する: <code>git checkout main</code></li>
+<li>変更をmainブランチにマージする: <code>git merge ブランチ名</code></li>
+<li>以下のようにコンフリクトが起こり、コンフリクト解消モードになる。</li>
+</ol>
+</li>
+</ol>
+<pre><code class="language-txt:ターミナル">$ git merge 
+Auto-merging test.txt
+CONFLICT (content): Merge conflict in test.txt
+Automatic merge failed; fix conflicts and then commit the result.
+$ git status
+On branch main
+You have unmerged paths.
+  (fix conflicts and run &quot;git commit&quot;)
+  (use &quot;git merge --abort&quot; to abort the merge)
+
+Unmerged paths:
+  (use &quot;git add &lt;file&gt;...&quot; to mark resolution)
+	both modified:   test.txt
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre>
+<ol start="5">
+<li>コンフリクトした部分は以下のように表示されるので内容を確認してファイルを修正する。</li>
+</ol>
+<pre><code>$ cat test.txt
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Hello from main branch
+=======
+Hello from the other branch
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 別のブランチ名
+</code></pre>
+<ol start="6">
+<li>修正を加えたファイルをコミットする: <code>git add test.txt &amp;&amp; git commit -m &quot;コミットメッセージ&quot;</code>
+<ul>
+<li>ここでのコミットメッセージはマージとコンフリクトを解消したことを明示した方が良い</li>
+</ul>
+</li>
+<li>マージが完了し、マージした別のブランチの変更履歴も統合されていることを確認する: <code>git log</code></li>
+</ol>
+<p>参考:</p>
+<ul>
+<li><a href="https://qiita.com/crarrry/items/c5964512e21e383b73da">Qiita | Git コンフリクト解消手順</a></li>
+<li><a href="https://qiita.com/chihiro/items/5dd671aa6f1c332986a7">Qiita | 【git】マージしたけどやっぱりやめたい時のやり方4種類</a></li>
+<li></li>
+</ul>
+<h2 id="githubのprpull-requestまで">GithubのPR(Pull Request)まで</h2>
+<p>他人のレポジトリを共同編集するには2つの方法がある。</p>
+<ul>
+<li>レポジトリの所有者にCollaboratorに追加してもらう</li>
+<li>レポジトリをForkして所有者にPRを送る</li>
+</ul>
+<p>今回は後者を行う。</p>
+<h3 id="他の人のレポジトリのクローンしてprを送る">他の人のレポジトリのクローンしてPRを送る</h3>
+<ol>
+<li>クローンしたい他人のレポジトリのURLにブラウザでアクセス</li>
+<li>&quot;Fork&quot;というボタンを押して自分のレポジトリとしてコピーする。</li>
+<li>Forkしたレポジトリをローカル上にクローンする: <code>git clone 自分のレポジトリのURL</code></li>
+<li>ローカル上にクローンしたレポジトリに変更加えてコミットする。</li>
+<li>Forkした自分のレポジトリへプッシュする。</li>
+<li>Forkした自分のレポジトリのURLにブラウザでアクセスして、Fork元の他人のレポジトリにPull Requestを作成する。</li>
+</ol>
+<p>参考:</p>
+<ul>
+<li><a href="https://qiita.com/matsubox/items/09904e4c51e6bc267990">Qiita | リポジトリのcloneとforkの違い</a></li>
+<li><a href="https://qiita.com/wann/items/688bc17460a457104d7d">Qiita | 【初心者向け】git fetch、git merge、git pullの違いについて</a></li>
+<li><a href="https://qiita.com/siida36/items/880d92559af9bd245c34">Qiita | Githubでチーム開発するためのマニュアル</a></li>
+<li><a href="https://atmarkit.itmedia.co.jp/ait/articles/1708/01/news015.html">@ITmedia | 【図解】git-flow、GitHub Flowを開発現場で使い始めるためにこれだけは覚えておこう</a></li>
+</ul>
+<h3 id="pull-request後のワークフロー">Pull Request後のワークフロー</h3>
+<ul>
+<li>PRを承認する側（レビューワー）</li>
+<li>コードの変更箇所を確認してコードに対して&quot;Approve&quot; / &quot;Request Changes&quot; / &quot;Comment&quot;を選択してコメントをつける。</li>
+<li>&quot;Approve&quot;を送ったら、PR申請者がマージする。</li>
+<li>PRを申請した側</li>
+<li>レビューワーから&quot;Request Changes&quot;を受けた -&gt; コードを変更する
+<ul>
+<li>修正方法1: ローカルで変更-&gt;コミット-&gt;プッシュして再度PRを送ると自動的に前のPRに統合される</li>
+<li>修正方法2: ブラウザ上でPR画面からコードを直接修正する</li>
+</ul>
+</li>
+<li>レビューワーから&quot;Approve&quot;を受けた -&gt;  PRをマージする</li>
+</ul>
+<p>参考:</p>
+<ul>
+<li><a href="https://qiita.com/YumaInaura/items/8223add6d8335a2eda7f">Github レビューでの Approve / Request Changes / Comment の使い方</a></li>
+</ul>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>
