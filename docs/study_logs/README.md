@@ -197,14 +197,13 @@ Git/GitHubを使った複数人での開発の基本に慣れよう。(GitHub De
 - PRに対する"Approve" / "Request Changes" / "Comment"でのレビューや修正方法などを詳しく確認した
 
 ### 学んだこと・できること
-TODO: コマンド詳しく
 - Git/Githubについて理解する
 - Gitの基本操作
-  - git init / add / commit
+  - プロジェクト開始からコミットまで: `git init`, `git add`, `git commit`
   - git commitの修正と取り消し操作: `git reset`
 - Gitのブランチ操作
-  - ブランチの作成からマージまで
-  - 変更の退避
+  - ブランチの作成からマージまで: `git branch`, `git checkout`, `git merge`
+  - 変更の退避: `git stash`
   - コンフリクトの解消
 - Githubの基本操作
   - レポジトリのForkからPull Requestまで
@@ -255,7 +254,7 @@ Webサービスの基本のき、Webページが表示される仕組みを理�
 - Dockerコンテナとホストマシンのポート通信について整理して理解できた
 - DockerのNginxコンテナとNginxのソフトウェアの概念を混同せずに理解できた。
 - 通常のWebサーバが80番ポートをデフォルトで利用していることを初めて知った。
-- 
+
 ### 課題と疑問
 #### 今後取り組みたいこと・自分で解決できる課題と疑問
 - [ ] Dockerコンテナのレイヤ構造とDcokerの仮想化技術について調査して理解する。
